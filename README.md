@@ -9,7 +9,7 @@ Polyglot - An online assessment for learning programming languages.
 - Collect common problems
 - Convert them to Quizzes
 
-## Brainstorm
+## Brainstorming
 
 ### Team battle
 
