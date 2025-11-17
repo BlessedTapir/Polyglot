@@ -134,7 +134,10 @@ This document defines the technical architecture and implementation details for 
 
 ## Technology Stack
 
-### Recommended Stack (Option A - Node.js)
+### ✅ Selected Stack (Python/FastAPI)
+
+**Decision Date:** November 17, 2025
+**Rationale:** FastAPI provides rapid development, excellent async support, automatic API documentation, and strong type hints with Pydantic.
 
 #### Frontend
 - **Framework:** React 18+
@@ -146,18 +149,20 @@ This document defines the technical architecture and implementation details for 
 - **E2E Testing:** Playwright
 
 #### Backend
-- **Runtime:** Node.js 20+ LTS
-- **Framework:** Express.js or Fastify
-- **Language:** TypeScript
-- **ORM:** Prisma or TypeORM
-- **Validation:** Zod or Joi
-- **Testing:** Jest + Supertest
-- **API Documentation:** Swagger/OpenAPI
+- **Language:** Python 3.11+
+- **Framework:** FastAPI
+- **ORM:** SQLAlchemy 2.0+ (async)
+- **Validation:** Pydantic v2
+- **Testing:** Pytest + pytest-asyncio
+- **Task Queue:** Celery + Redis
+- **API Documentation:** FastAPI automatic docs (Swagger UI + ReDoc)
+- **ASGI Server:** Uvicorn
+- **Database Migrations:** Alembic
 
 #### Database
 - **Primary:** PostgreSQL 15+
 - **Cache:** Redis 7+
-- **Migration Tool:** Prisma Migrate or TypeORM migrations
+- **Migration Tool:** Alembic
 
 #### Infrastructure
 - **Hosting:** Vercel (frontend) + Railway/Render (backend)
@@ -169,38 +174,20 @@ This document defines the technical architecture and implementation details for 
 
 ---
 
-### Alternative Stack (Option B - Python)
+### Why FastAPI?
 
-#### Frontend
-- Same as Option A
+✅ **Advantages for Polyglot:**
+1. **Speed:** High performance with async/await support
+2. **Development Velocity:** Automatic API docs, less boilerplate
+3. **Type Safety:** Pydantic models provide runtime validation
+4. **Modern Python:** Uses Python 3.11+ features
+5. **Easy Testing:** Pytest integration is seamless
+6. **Learning Curve:** Pythonic and intuitive
+7. **Community:** Growing ecosystem and active development
 
-#### Backend
-- **Language:** Python 3.11+
-- **Framework:** FastAPI or Django
-- **ORM:** SQLAlchemy or Django ORM
-- **Validation:** Pydantic
-- **Testing:** Pytest
-- **Task Queue:** Celery + Redis
-- **API Documentation:** FastAPI automatic docs
+### Alternative Considered
 
-#### Database
-- Same as Option A
-
----
-
-### Technology Decision Matrix
-
-| Criteria | Node.js (Express) | Python (FastAPI) | Python (Django) |
-|----------|-------------------|------------------|-----------------|
-| **Development Speed** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
-| **Performance** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ |
-| **Ecosystem** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
-| **TypeScript Support** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ |
-| **Learning Curve** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ |
-| **Async Support** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ |
-| **Admin Panel** | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
-
-**Recommendation:** Node.js + TypeScript for full-stack consistency and performance, or Python FastAPI for rapid development.
+**Node.js + TypeScript** was considered but not selected for this project. Both options are viable for production use.
 
 ---
 
